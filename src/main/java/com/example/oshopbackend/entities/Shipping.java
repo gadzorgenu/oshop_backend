@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Shipping {
     private String name;
-    private List<String> address;
+    private List<Address> address;
     private String city;
 }

@@ -5,15 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Data
-//@Builder
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class Cart {
-    private Integer quantity;
-    private Product product;
-    private BigDecimal totalPrice;
-
+@AllArgsConstructor
+public class Address {
+    private String country;
+    private String city;
+    private String postcode;
 }
