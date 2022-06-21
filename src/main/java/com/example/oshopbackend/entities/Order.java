@@ -13,20 +13,15 @@ import java.time.ZonedDateTime;
 @Data
 //@Builder
 @Document
+@AllArgsConstructor
 public class Order {
     @Id
     private String id;
     private Double price;
     private LocalDateTime created;
     private Cart cart;
+    private User user;
 
-    public Order(Double price,
-                 LocalDateTime created,
-                 Cart cart) {
-        this.price = price;
-        this.created = created;
-        this.cart = cart;
-    }
     //TODO: sum of items in the shopping cart
 
 }
