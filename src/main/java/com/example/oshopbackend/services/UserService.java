@@ -17,10 +17,13 @@ public class UserService  {
 
     public  User updateUser(User user) throws CustomException {
         var existingUser = findUserByEmail(user.getEmail());
-        if(user.getEmail().equals(existingUser.getEmail())){
-            return userDao.save(user);
-        }
-        return existingUser;
+
+        existingUser.setName(user.getName());
+        existingUser.setCity(user.getCity());
+        existingUser.setAddress(user.getAddress());
+        existingUser.setEmail(user.getEmail());
+
+        return userDao.save(existingUser);
     }
 
     public User findUserByEmail(String email) throws CustomException {
