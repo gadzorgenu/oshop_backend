@@ -8,8 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface ProductDao extends MongoRepository<Product, String> {
-     Product findPoductByName(String name);
+     Optional<Product> findPoductByName(String name);
      Optional<Product> findById(String Id);
 
-     void createProduct(Product product);
+     void deleteProduct(Long id);
 }
