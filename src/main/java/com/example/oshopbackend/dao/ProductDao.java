@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface ProductDao extends MongoRepository<Product, String> {
      Product findPoductByName(String name);
      Optional<Product> findById(String Id);
+
+     void createProduct(Product product);
 }
