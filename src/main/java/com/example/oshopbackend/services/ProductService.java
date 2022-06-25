@@ -2,6 +2,7 @@ package com.example.oshopbackend.services;
 
 import com.example.oshopbackend.dao.ProductDao;
 import com.example.oshopbackend.entities.Product;
+import com.example.oshopbackend.enums.CATEGORY;
 import com.example.oshopbackend.exceptions.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,12 @@ public class ProductService {
         return productDao.findAll();
     }
 
-    public void deleteProduct(Long id){
-        productDao.deleteProduct(id);
+//    public void deleteProduct(Long id){
+//        productDao.deleteById(id.toString());
+//    }
+
+    public List<Product> getProductsByCategory(CATEGORY category){
+        List<Product> productList = productDao.findAll(category);
+        return productList;
     }
 }

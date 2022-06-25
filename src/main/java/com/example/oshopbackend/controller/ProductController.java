@@ -1,6 +1,7 @@
 package com.example.oshopbackend.controller;
 
 import com.example.oshopbackend.entities.Product;
+import com.example.oshopbackend.enums.CATEGORY;
 import com.example.oshopbackend.exceptions.CustomException;
 import com.example.oshopbackend.services.ProductService;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
-public class ProductCotroller {
+public class ProductController {
 
     @Autowired
     ProductService service;
@@ -32,14 +33,14 @@ public class ProductCotroller {
         return new ResponseEntity<>(service.getProduct(), HttpStatus.OK);
     }
 
-    @DeleteMapping("${id}")
-    @ApiOperation(value = "Delete Product")
-    public ResponseEntity<?> deleteProduct(
-            @ApiParam(value = "product id")
-            @PathVariable Long id){
-        service.deleteProduct(id);
-        return new ResponseEntity<>(HttpStatus.OK) ;
-    }
+//    @DeleteMapping("${id}")
+//    @ApiOperation(value = "Delete Product")
+//    public ResponseEntity<?> deleteProduct(
+//            @ApiParam(value = "product id")
+//            @PathVariable Long id){
+//        service.deleteProduct(id);
+//        return new ResponseEntity<>(HttpStatus.OK) ;
+//    }
 
     @PutMapping("/update")
     @ApiOperation(value = "Update existing product")
@@ -47,6 +48,14 @@ public class ProductCotroller {
             @ApiParam(value = "product")
             @RequestBody Product product) throws CustomException {
         return new ResponseEntity<>(service.updateProduct(product),HttpStatus.OK);
+    }
+
+    @GetMapping("/{category}")
+    @ApiOperation(value = "Gets products under a category")
+    public ResponseEntity<List<Product>> getProductsByCategory(
+            @ApiParam(value = "product")
+            @PathVariable CATEGORY category) {
+        return new ResponseEntity<>(service.getProductsByCategory(category),HttpStatus.OK);
     }
 
 }

@@ -31,4 +31,9 @@ public class UserController {
             @RequestBody User userUpdate) throws CustomException {
         return new ResponseEntity<>(service.updateUser(userUpdate), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/custom", method = RequestMethod.POST)
+    public String custom() {
+        return "custom";
+    }
 }

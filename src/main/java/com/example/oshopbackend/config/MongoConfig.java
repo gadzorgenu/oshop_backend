@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 
+import java.util.Objects;
+
 @Configuration
 public class MongoConfig {
 
@@ -17,7 +19,11 @@ public class MongoConfig {
 
     @Bean
     public MongoDatabaseFactory mongodbFactory(){
-        return  new SimpleMongoClientDatabaseFactory(MongoClients.create(),"oshopbackend");
+        return  new SimpleMongoClientDatabaseFactory(
+                MongoClients.create(
+                        Objects.requireNonNull(env.getProperty("spring.data.mongodb.uri"))),
+                        Objects.requireNonNull(env.getProperty("spring.data.mongodb.database"))
+        );
     }
 
     @Bean

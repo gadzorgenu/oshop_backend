@@ -13,7 +13,9 @@ import java.math.BigDecimal;
 
 @Data
 //@Builder
-@Document
+@AllArgsConstructor
+@NoArgsConstructor
+@Document("product")
 public class Product {
     @Id
     private String id;
