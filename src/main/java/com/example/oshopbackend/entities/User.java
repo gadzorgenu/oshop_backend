@@ -23,4 +23,11 @@ public class User {
     private String email;
     private List<Address> address;
     private String city;
+
+    public User(String name, String email, List<Address> address, String city) {
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.city = city;
+    }
 }

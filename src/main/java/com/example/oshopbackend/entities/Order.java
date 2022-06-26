@@ -20,7 +20,7 @@ public class Order {
     private Double price;
     private LocalDateTime created;
     private Cart cart;
-    private User user;
+    private String userId;
 
     //TODO: sum of items in the shopping cart
 
