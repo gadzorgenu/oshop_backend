@@ -23,11 +23,13 @@ public class User {
     private String email;
     private List<Address> address;
     private String city;
+    private Boolean isAdmin;
 
-    public User(String name, String email, List<Address> address, String city) {
+    public User(String name, String email, List<Address> address, String city, Boolean isAdmin) {
         this.name = name;
         this.email = email;
         this.address = address;
         this.city = city;
+        this.isAdmin = isAdmin;
     }
 }
