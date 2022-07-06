@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/product")
@@ -56,6 +58,12 @@ public class ProductController {
             @ApiParam(value = "product")
             @PathVariable CATEGORY category) {
         return new ResponseEntity<>(service.getProductsByCategory(category),HttpStatus.OK);
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<List<CATEGORY>> getAllCategories(){
+        var categories = Arrays.asList(CATEGORY.values());
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
 }
