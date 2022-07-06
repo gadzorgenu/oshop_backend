@@ -1,5 +1,6 @@
 package com.example.oshopbackend.controller;
 
+import com.example.oshopbackend.dao.ProductDao;
 import com.example.oshopbackend.entities.Product;
 import com.example.oshopbackend.enums.CATEGORY;
 import com.example.oshopbackend.exceptions.CustomException;
@@ -35,14 +36,14 @@ public class ProductController {
         return new ResponseEntity<>(service.getProduct(), HttpStatus.OK);
     }
 
-//    @DeleteMapping("${id}")
-//    @ApiOperation(value = "Delete Product")
-//    public ResponseEntity<?> deleteProduct(
-//            @ApiParam(value = "product id")
-//            @PathVariable Long id){
-//        service.deleteProduct(id);
-//        return new ResponseEntity<>(HttpStatus.OK) ;
-//    }
+    @DeleteMapping("")
+    @ApiOperation(value = "Delete Product")
+    public ResponseEntity<?> deleteProduct(
+            @ApiParam(value = "product id")
+            @PathVariable Product product){
+        service.deleteProduct(product);
+        return new ResponseEntity<>(HttpStatus.OK) ;
+    }
 
     @PutMapping("/update")
     @ApiOperation(value = "Update existing product")

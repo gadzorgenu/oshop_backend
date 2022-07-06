@@ -2,6 +2,7 @@ package com.example.oshopbackend.config;
 
 import com.mongodb.client.MongoClients;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -23,6 +24,7 @@ public class MongoConfig {
                 MongoClients.create(
                         Objects.requireNonNull(env.getProperty("spring.data.mongodb.uri"))),
                         Objects.requireNonNull(env.getProperty("spring.data.mongodb.database"))
+
         );
     }
 

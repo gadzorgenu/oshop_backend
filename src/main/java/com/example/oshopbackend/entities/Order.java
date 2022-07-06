@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 
 @Data
 //@Builder
-@Document
+@Document("order")
 @AllArgsConstructor
 public class Order {
     @Id
