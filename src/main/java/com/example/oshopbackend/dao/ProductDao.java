@@ -1,7 +1,7 @@
 package com.example.oshopbackend.dao;
 
 import com.example.oshopbackend.entities.Product;
-import com.example.oshopbackend.enums.CATEGORY;
+import com.example.oshopbackend.enums.Category;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -19,7 +19,7 @@ public interface ProductDao extends MongoRepository<Product, String> {
 
 //     We only want to project the product’s name in the query response, so we set those fields to 1.
      @Query(value = "{category: '?0'}", fields = "{'name': 1, 'price':1, 'imageUrl':1, 'category':1}")
-     List<Product> findAll(CATEGORY category);
+     List<Product> findAll(Category category);
 
 //     void deleteProduct(Long id);
 }

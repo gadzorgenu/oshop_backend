@@ -1,8 +1,7 @@
 package com.example.oshopbackend.entities;
 
-import com.example.oshopbackend.enums.CATEGORY;
+import com.example.oshopbackend.enums.Category;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -23,12 +22,12 @@ public class Product {
     private String name;
     private BigDecimal price;
     private String imageUrl;
-    private CATEGORY category;
+    private Category category;
 
     public Product(String name,
                    BigDecimal price,
                    String imageUrl,
-                   CATEGORY category) {
+                   Category category) {
         this.name = name;
         this.price = price;
         this.imageUrl = imageUrl;

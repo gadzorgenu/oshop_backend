@@ -1,8 +1,7 @@
 package com.example.oshopbackend.controller;
 
-import com.example.oshopbackend.dao.ProductDao;
 import com.example.oshopbackend.entities.Product;
-import com.example.oshopbackend.enums.CATEGORY;
+import com.example.oshopbackend.enums.Category;
 import com.example.oshopbackend.exceptions.CustomException;
 import com.example.oshopbackend.services.ProductService;
 import io.swagger.annotations.ApiOperation;
@@ -53,18 +52,19 @@ public class ProductController {
         return new ResponseEntity<>(service.updateProduct(product),HttpStatus.OK);
     }
 
-    @GetMapping("/{category}")
+    @GetMapping("/categories")
+    public ResponseEntity<List<String>> getAllCategories(){
+        return new ResponseEntity<>(service.getAllCategories(), HttpStatus.OK);
+    }
+
+    @GetMapping("categories/{category}")
     @ApiOperation(value = "Gets products under a category")
     public ResponseEntity<List<Product>> getProductsByCategory(
             @ApiParam(value = "product")
-            @PathVariable CATEGORY category) {
+            @PathVariable String category) {
         return new ResponseEntity<>(service.getProductsByCategory(category),HttpStatus.OK);
     }
 
-    @GetMapping("/categories")
-    public ResponseEntity<List<CATEGORY>> getAllCategories(){
-        var categories = Arrays.asList(CATEGORY.values());
-        return new ResponseEntity<>(categories, HttpStatus.OK);
-    }
+
 
 }

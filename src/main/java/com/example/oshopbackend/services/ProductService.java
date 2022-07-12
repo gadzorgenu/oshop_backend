@@ -2,12 +2,14 @@ package com.example.oshopbackend.services;
 
 import com.example.oshopbackend.dao.ProductDao;
 import com.example.oshopbackend.entities.Product;
-import com.example.oshopbackend.enums.CATEGORY;
+import com.example.oshopbackend.enums.Category;
 import com.example.oshopbackend.exceptions.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -41,7 +43,11 @@ public class ProductService {
         productDao.delete(product);
     }
 
-    public List<Product> getProductsByCategory(CATEGORY category){
-        return productDao.findAll(category);
+    public List<Product> getProductsByCategory(String category){
+        return productDao.findAll(Category.valueOf(category));
+    }
+
+    public List<String> getAllCategories(){
+        return Arrays.stream(Category.values()).map(Category::getValue).collect(Collectors.toList());
     }
 }
