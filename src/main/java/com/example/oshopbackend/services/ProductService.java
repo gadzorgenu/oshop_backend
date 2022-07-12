@@ -26,7 +26,7 @@ public class ProductService {
         existingProduct.setName(product.getName());
         existingProduct.setPrice(product.getPrice());
         existingProduct.setImageUrl(product.getImageUrl());
-        existingProduct.setCategory(product.getCategory());
+        existingProduct.setCategory(Category.valueOf(product.getCategory().getValue().toUpperCase()));
 
         return productDao.save(existingProduct);
     }
