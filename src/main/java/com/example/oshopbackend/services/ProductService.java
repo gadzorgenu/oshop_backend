@@ -44,7 +44,7 @@ public class ProductService {
     }
 
     public List<Product> getProductsByCategory(String category){
-        return productDao.findAll(Category.valueOf(category));
+        return productDao.findAll(Category.valueOf(category.toUpperCase()));
     }
 
     public List<String> getAllCategories(){
