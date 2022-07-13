@@ -21,7 +21,7 @@ public class ProductService {
     }
 
     public Product updateProduct(Product product) throws CustomException {
-        var existingProduct = findProductByName(product.getName());
+        var existingProduct = findById(product.getId());
 
         existingProduct.setName(product.getName());
         existingProduct.setPrice(product.getPrice());
@@ -31,8 +31,8 @@ public class ProductService {
         return productDao.save(existingProduct);
     }
 
-    public Product findProductByName(String name) throws CustomException {
-        return productDao.findPoductByName(name).orElseThrow(() -> new CustomException("Product not found"));
+    public Product findById(String id) throws CustomException {
+        return productDao.findById(id).orElseThrow(() -> new CustomException("Product not found"));
     }
 
     public List<Product> getProduct(){

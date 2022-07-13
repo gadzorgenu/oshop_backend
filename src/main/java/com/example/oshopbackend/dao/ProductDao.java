@@ -14,7 +14,7 @@ public interface ProductDao extends MongoRepository<Product, String> {
      @Query("{name: '?0'}")
      Optional<Product> findPoductByName(String name);
 
-     @Query("{id: '?0'}")
+     @Query(value = "{id: '?0'}")
      Optional<Product> findById(String Id);
 
 //     We only want to project the product’s name in the query response, so we set those fields to 1.
