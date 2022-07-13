@@ -26,7 +26,7 @@ public class ProductService {
         existingProduct.setName(product.getName());
         existingProduct.setPrice(product.getPrice());
         existingProduct.setImageUrl(product.getImageUrl());
-        existingProduct.setCategory(Category.valueOf(product.getCategory().getValue().toUpperCase()));
+        existingProduct.setCategory(product.getCategory());
 
         return productDao.save(existingProduct);
     }
@@ -47,7 +47,7 @@ public class ProductService {
         return productDao.findAll(Category.valueOf(category.toUpperCase()));
     }
 
-    public List<String> getAllCategories(){
-        return Arrays.stream(Category.values()).map(Category::getValue).collect(Collectors.toList());
+    public List<Category> getAllCategories(){
+        return Arrays.stream(Category.values()).collect(Collectors.toList());
     }
 }

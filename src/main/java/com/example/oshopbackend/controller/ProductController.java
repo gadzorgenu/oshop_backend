@@ -53,7 +53,7 @@ public class ProductController {
     }
 
     @GetMapping("/categories")
-    public ResponseEntity<List<String>> getAllCategories(){
+    public ResponseEntity<List<Category>> getAllCategories(){
         return new ResponseEntity<>(service.getAllCategories(), HttpStatus.OK);
     }
 
