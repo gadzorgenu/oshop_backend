@@ -33,21 +33,22 @@ public class ProductController {
         return new ResponseEntity<>(service.getProduct(), HttpStatus.OK);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete Product")
     public ResponseEntity<?> deleteProduct(
             @ApiParam(value = "product id")
-            @PathVariable Product product){
-        service.deleteProduct(product);
+            @PathVariable String id){
+        service.deleteProduct(id);
         return new ResponseEntity<>(HttpStatus.OK) ;
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     @ApiOperation(value = "Update existing product")
     public ResponseEntity<Product> updateProduct(
             @ApiParam(value = "product")
+            @PathVariable String id,
             @RequestBody Product product) throws CustomException {
-        return new ResponseEntity<>(service.updateProduct(product),HttpStatus.OK);
+        return new ResponseEntity<>(service.updateProduct(id,product),HttpStatus.OK);
     }
 
     @GetMapping("/categories")
@@ -63,7 +64,7 @@ public class ProductController {
         return new ResponseEntity<>(service.getProductsByCategory(category),HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     @ApiOperation(value = "Get product by id")
     public ResponseEntity<Product> getProduct(
             @ApiParam(value = "product")

@@ -20,8 +20,8 @@ public class ProductService {
         return productDao.save(product);
     }
 
-    public Product updateProduct(Product product) throws CustomException {
-        var existingProduct = findById(product.getId());
+    public Product updateProduct(String id,Product product) throws CustomException {
+        var existingProduct = findById(id);
 
         existingProduct.setName(product.getName());
         existingProduct.setPrice(product.getPrice());
@@ -39,8 +39,8 @@ public class ProductService {
         return productDao.findAll();
     }
 
-    public void deleteProduct(Product product){
-        productDao.delete(product);
+    public void deleteProduct(String id){
+        productDao.deleteById(id);
     }
 
     public List<Product> getProductsByCategory(String category){
