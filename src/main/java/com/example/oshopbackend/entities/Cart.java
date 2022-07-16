@@ -4,25 +4,30 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.swing.text.DateFormatter;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Data
-@Document("cart")
+@Document("shopping-cart")
 //@Builder
 @NoArgsConstructor
 public class Cart {
     @Id
     private String id;
-    private Integer quantity;
     private String productId;
-    private BigDecimal totalPrice;
 
-    public Cart(Integer quantity, String productId, BigDecimal totalPrice) {
-        this.quantity = quantity;
+    private String createdAt;
+
+    public Cart(String productId, LocalDate date) {
         this.productId = productId;
-        this.totalPrice = totalPrice;
+        this.createdAt = date.toString();
     }
 }

@@ -56,11 +56,11 @@ public class ProductController {
         return new ResponseEntity<>(service.getAllCategories(), HttpStatus.OK);
     }
 
-    @GetMapping("categories/{category}")
+    @GetMapping("/category")
     @ApiOperation(value = "Gets products under a category")
     public ResponseEntity<List<Product>> getProductsByCategory(
             @ApiParam(value = "product")
-            @PathVariable String category) {
+            @RequestParam String category) {
         return new ResponseEntity<>(service.getProductsByCategory(category),HttpStatus.OK);
     }
 
