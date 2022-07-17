@@ -1,19 +1,12 @@
 package com.example.oshopbackend.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.swing.text.DateFormatter;
-import java.math.BigDecimal;
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.List;
 
 @Data
 @Document("shopping-cart")
@@ -22,12 +15,14 @@ import java.util.Date;
 public class Cart {
     @Id
     private String id;
-    private String productId;
-
+    private List<Item> items;
     private String createdAt;
 
-    public Cart(String productId, LocalDate date) {
-        this.productId = productId;
+    public Cart(LocalDate date) {
         this.createdAt = date.toString();
+    }
+    public Cart(LocalDate date, List<Item> items) {
+        this.createdAt = date.toString();
+        this.items = items;
     }
 }
