@@ -55,7 +55,7 @@ public class CartService {
         return cartDao.findAll();
     }
 
-    public Cart getProductsInCart(String cartId, String productId) {
-        return null;
+    public void removeProduct(String cartId) {
+         cartDao.deleteById(cartId);
     }
 }

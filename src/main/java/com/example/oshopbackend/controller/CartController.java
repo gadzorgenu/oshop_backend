@@ -38,12 +38,12 @@ public class CartController {
         return new ResponseEntity<>(cartService.getCart(),HttpStatus.OK);
     }
 
-    @GetMapping("/{cartId}/items/{productId}")
-    @ApiOperation(value = "Get product in a shopping cart")
-    public ResponseEntity<Cart> getProductsInCart(
-            @PathVariable  String cartId,
-            @PathVariable String productId
-    ) throws CustomException {
-        return new ResponseEntity<>(cartService.getProductsInCart(cartId, productId),HttpStatus.OK);
+    @DeleteMapping("/{cartId}")
+    @ApiOperation(value = "Delete product in  shopping cart")
+    public ResponseEntity<?> removeProduct(
+            @PathVariable  String cartId
+    ){
+        cartService.removeProduct(cartId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
