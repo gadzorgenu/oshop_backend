@@ -2,6 +2,7 @@ package com.example.oshopbackend.controller;
 
 import com.example.oshopbackend.entities.Cart;
 import com.example.oshopbackend.exceptions.CustomException;
+import com.example.oshopbackend.requests.CartRequest;
 import com.example.oshopbackend.services.CartService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/cart")
 public class CartController {
@@ -17,19 +20,22 @@ public class CartController {
     @Autowired
     CartService cartService;
 
-    @PostMapping("/add")
+    @PostMapping("/{operation}")
     @ApiOperation(value = "Create shopping cart")
     public ResponseEntity<Cart> createCart(
             @ApiParam(value = "cart object")
-            @RequestBody Cart cart
-    ){
-        return new ResponseEntity<>(cartService.createCart(cart), HttpStatus.CREATED);
+            @RequestBody CartRequest cart,
+            @PathVariable String operation
+
+            ) throws CustomException {
+        return new ResponseEntity<>(cartService.createCart(cart, operation), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{cartId}")
-    @ApiOperation(value = "Get shopping cart by id")
-    public ResponseEntity<Cart> getCart(@PathVariable  String cartId) throws CustomException {
-        return new ResponseEntity<>(cartService.getCart(cartId),HttpStatus.OK);
+
+    @GetMapping("/")
+    @ApiOperation(value = "Get items in cart")
+    public ResponseEntity<List<Cart>> getCart() {
+        return new ResponseEntity<>(cartService.getCart(),HttpStatus.OK);
     }
 
     @GetMapping("/{cartId}/items/{productId}")
