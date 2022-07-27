@@ -34,7 +34,7 @@ public class CartController {
 
     @GetMapping("/")
     @ApiOperation(value = "Get items in cart")
-    public ResponseEntity<List<Cart>> getCart() {
+    public ResponseEntity<List<Cart>> getItems() {
         return new ResponseEntity<>(cartService.getCart(),HttpStatus.OK);
     }
 
@@ -45,5 +45,13 @@ public class CartController {
     ){
         cartService.removeProduct(cartId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{cartId}")
+    @ApiOperation(value = "Get product in  shopping cart")
+    public ResponseEntity<Cart> getItem(
+            @PathVariable  String cartId
+    ) throws CustomException {
+        return new ResponseEntity<>(cartService.getProduct(cartId),HttpStatus.OK);
     }
 }

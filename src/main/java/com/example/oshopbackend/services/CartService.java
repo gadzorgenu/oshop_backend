@@ -58,4 +58,8 @@ public class CartService {
     public void removeProduct(String cartId) {
          cartDao.deleteById(cartId);
     }
+
+    public Cart getProduct(String cartId) throws CustomException {
+        return cartDao.findById(cartId).orElseThrow(() -> new CustomException("Cart not found"));
+    }
 }
