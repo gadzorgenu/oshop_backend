@@ -21,15 +21,15 @@ public class CartService {
         this.cartDao = cartDao;
     }
 
-    public Cart createCart(CartRequest cartRequest, String operation) throws CustomException {
-        var res = cartDao.findByProductId(cartRequest.getProductId());
+    public Cart createCart(String productId, String operation) throws CustomException {
+        var res = cartDao.findByProductId(productId);
 
         if(res.isEmpty()){
-            var product = productDao.findById(cartRequest.getProductId())
+            var product = productDao.findById(productId)
                     .orElseThrow(() -> new CustomException("Product not found"));
 
             var newCart = Cart.builder()
-                    .productId(cartRequest.getProductId())
+                    .productId(productId)
                     .product(product)
                     .quantity(1)
                     .createdAt(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))

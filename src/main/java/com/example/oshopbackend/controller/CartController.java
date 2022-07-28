@@ -20,15 +20,15 @@ public class CartController {
     @Autowired
     CartService cartService;
 
-    @PostMapping("/{operation}")
+    @PostMapping("/{productId}/{operation}")
     @ApiOperation(value = "Create shopping cart")
     public ResponseEntity<Cart> createCart(
             @ApiParam(value = "cart object")
-            @RequestBody CartRequest cart,
+            @PathVariable String productId,
             @PathVariable String operation
 
             ) throws CustomException {
-        return new ResponseEntity<>(cartService.createCart(cart, operation), HttpStatus.CREATED);
+        return new ResponseEntity<>(cartService.createCart(productId, operation), HttpStatus.CREATED);
     }
 
 
