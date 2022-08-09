@@ -4,7 +4,6 @@ import com.example.oshopbackend.dao.CartDao;
 import com.example.oshopbackend.dao.ProductDao;
 import com.example.oshopbackend.entities.Cart;
 import com.example.oshopbackend.exceptions.CustomException;
-import com.example.oshopbackend.requests.CartRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -51,15 +50,16 @@ public class CartService {
     }
 
 
-    public List<Cart> getCart(){
+    public List<Cart> getCarts(){
         return cartDao.findAll();
     }
 
-    public void removeProduct(String cartId) {
-         cartDao.deleteById(cartId);
+    public void removeProduct(String cartId) throws CustomException {
+        var cart = getCart(cartId);
+         cartDao.deleteById(cart.getId());
     }
 
-    public Cart getProduct(String cartId) throws CustomException {
+    public Cart getCart(String cartId) throws CustomException {
         return cartDao.findById(cartId).orElseThrow(() -> new CustomException("Cart not found"));
     }
 }

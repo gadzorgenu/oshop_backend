@@ -2,7 +2,6 @@ package com.example.oshopbackend.controller;
 
 import com.example.oshopbackend.entities.Cart;
 import com.example.oshopbackend.exceptions.CustomException;
-import com.example.oshopbackend.requests.CartRequest;
 import com.example.oshopbackend.services.CartService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -35,14 +34,15 @@ public class CartController {
     @GetMapping("/")
     @ApiOperation(value = "Get items in cart")
     public ResponseEntity<List<Cart>> getItems() {
-        return new ResponseEntity<>(cartService.getCart(),HttpStatus.OK);
+        return new ResponseEntity<>(cartService.getCarts(),HttpStatus.OK);
     }
 
     @DeleteMapping("/{cartId}")
     @ApiOperation(value = "Delete product in  shopping cart")
     public ResponseEntity<?> removeProduct(
+            @ApiParam(value = "cart id")
             @PathVariable  String cartId
-    ){
+    ) throws CustomException {
         cartService.removeProduct(cartId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -52,6 +52,7 @@ public class CartController {
     public ResponseEntity<Cart> getItem(
             @PathVariable  String cartId
     ) throws CustomException {
-        return new ResponseEntity<>(cartService.getProduct(cartId),HttpStatus.OK);
+        return new ResponseEntity<>(cartService.getCart(cartId),HttpStatus.OK);
     }
+
 }
