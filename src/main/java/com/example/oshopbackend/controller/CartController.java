@@ -1,5 +1,6 @@
 package com.example.oshopbackend.controller;
 
+import com.example.oshopbackend.dto.ShoppingCart;
 import com.example.oshopbackend.entities.Cart;
 import com.example.oshopbackend.exceptions.CustomException;
 import com.example.oshopbackend.services.CartService;
@@ -53,6 +54,11 @@ public class CartController {
             @PathVariable  String cartId
     ) throws CustomException {
         return new ResponseEntity<>(cartService.getCart(cartId),HttpStatus.OK);
+    }
+    @GetMapping("/all")
+    @ApiOperation(value = "Get entire shopping cart with total quantity")
+    public ResponseEntity<ShoppingCart> getList( ){
+        return new ResponseEntity<>(cartService.getList(),HttpStatus.OK);
     }
 
 }

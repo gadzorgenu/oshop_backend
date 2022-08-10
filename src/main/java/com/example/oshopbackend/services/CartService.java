@@ -2,6 +2,7 @@ package com.example.oshopbackend.services;
 
 import com.example.oshopbackend.dao.CartDao;
 import com.example.oshopbackend.dao.ProductDao;
+import com.example.oshopbackend.dto.ShoppingCart;
 import com.example.oshopbackend.entities.Cart;
 import com.example.oshopbackend.exceptions.CustomException;
 import org.springframework.stereotype.Service;
@@ -61,5 +62,16 @@ public class CartService {
 
     public Cart getCart(String cartId) throws CustomException {
         return cartDao.findById(cartId).orElseThrow(() -> new CustomException("Cart not found"));
+    }
+
+    public ShoppingCart getList(){
+        var items = getCarts();
+        var totalQuantity = (Integer) items.stream().map(Cart::getQuantity).mapToInt(Integer::intValue).sum();
+
+        return ShoppingCart
+                .builder()
+                .carts(items)
+                .totalQuantity(totalQuantity)
+                .build();
     }
 }
